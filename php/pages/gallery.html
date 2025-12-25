@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleset Gallery</title>
+  <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+
+<h1 style="text-align:center">Visualizzatore di Ruleset</h1>
+
+<div id="playerInterface">
+  <h2>Imposta la Regola (Output cella)</h2>
+  
+  <div id="ruleset-selectors">
+      <label for="rule-7" class="rule-block">
+          <input type="checkbox" id="rule-7" data-index="7">
+          <div class="input-pattern">
+              <span class="cell active"></span><span class="cell active"></span><span class="cell active"></span>
+          </div>
+          <span class="arrow">⬇</span>
+          <div class="output-cell"><span class="cell output"></span></div>
+      </label>
+
+      <label for="rule-6" class="rule-block">
+          <input type="checkbox" id="rule-6" data-index="6">
+          <div class="input-pattern">
+              <span class="cell active"></span><span class="cell active"></span><span class="cell"></span>
+          </div>
+          <span class="arrow">⬇</span>
+          <div class="output-cell"><span class="cell output"></span></div>
+      </label>
+
+      <label for="rule-5" class="rule-block">
+          <input type="checkbox" id="rule-5" data-index="5">
+          <div class="input-pattern">
+              <span class="cell active"></span><span class="cell"></span><span class="cell active"></span>
+          </div>
+          <span class="arrow">⬇</span>
+          <div class="output-cell"><span class="cell output"></span></div>
+      </label>
+
+      <label for="rule-4" class="rule-block">
+          <input type="checkbox" id="rule-4" data-index="4">
+          <div class="input-pattern">
+              <span class="cell active"></span><span class="cell"></span><span class="cell"></span>
+          </div>
+          <span class="arrow">⬇</span>
+          <div class="output-cell"><span class="cell output"></span></div>
+      </label>
+
+      <label for="rule-3" class="rule-block">
+          <input type="checkbox" id="rule-3" data-index="3">
+          <div class="input-pattern">
+              <span class="cell"></span><span class="cell active"></span><span class="cell active"></span>
+          </div>
+          <span class="arrow">⬇</span>
+          <div class="output-cell"><span class="cell output"></span></div>
+      </label>
+
+      <label for="rule-2" class="rule-block">
+          <input type="checkbox" id="rule-2" data-index="2">
+          <div class="input-pattern">
+              <span class="cell"></span><span class="cell active"></span><span class="cell"></span>
+          </div>
+          <span class="arrow">⬇</span>
+          <div class="output-cell"><span class="cell output"></span></div>
+      </label>
+
+      <label for="rule-1" class="rule-block">
+          <input type="checkbox" id="rule-1" data-index="1">
+          <div class="input-pattern">
+              <span class="cell"></span><span class="cell"></span><span class="cell active"></span>
+          </div>
+          <span class="arrow">⬇</span>
+          <div class="output-cell"><span class="cell output"></span></div>
+      </label>
+
+      <label for="rule-0" class="rule-block">
+          <input type="checkbox" id="rule-0" data-index="0">
+          <div class="input-pattern">
+              <span class="cell"></span><span class="cell"></span><span class="cell"></span>
+          </div>
+          <span class="arrow">⬇</span>
+          <div class="output-cell"><span class="cell output"></span></div>
+      </label>
+  </div>
+  
+  <div class="controls">
+      <button id="submitRulesButton">Conferma Regole</button>
+  </div>
+</div>
+
+<div id="canvas-container">
+    <canvas id="playerCanvas"></canvas>
+</div>
+
+<script src="../../js/automaton.js"></script>
+<script src="../../js/ruleset-gallery.js"></script>
+
+</body>
+</html>

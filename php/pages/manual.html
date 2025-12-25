@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Automata Match – Manuale</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <link rel="stylesheet" href="../../css/manual.css">
+</head>
+<body>
+
+  <div class="manual-container">
+
+    <h1>Automata Match – Manuale</h1>
+
+    <section>
+      <h2>Cos'è Automata Match</h2>
+      <p>
+        Automata Match è un gioco basato sugli <a href="https://www.wolframscience.com/nks/"><strong>automi cellulari
+        unidimensionali di Wolfram</strong></a>.
+        L'obiettivo del giocatore è dedurre il ruleset che governa
+        l'evoluzione di un automa osservandone il comportamento.
+      </p>
+    </section>
+
+    <section>
+      <h2>Automi cellulari di Wolfram</h2>
+      <p>
+        Un automa cellulare unidimensionale è composto da una fila di celle,
+        ciascuna delle quali può assumere due stati: <strong>attiva (1)</strong>
+        o <strong>inattiva (0)</strong>.
+      </p>
+
+      <p>
+        L'evoluzione avviene per righe successive: lo stato di ogni cella
+        dipende dallo stato della cella stessa e delle due celle adiacenti
+        nella riga precedente.
+      </p>
+    </section>
+
+    <section>
+      <h2>I Ruleset</h2>
+      <p>
+        Ogni possibile combinazione dei tre vicini (111, 110, ..., 000)
+        corrisponde a una regola.
+        Poiché esistono 8 combinazioni e ogni regola può produrre 0 o 1,
+        esistono <strong>256 ruleset possibili</strong>.
+      </p>
+    </section>
+
+    <section>
+      <h2>Come si gioca</h2>
+      <ol>
+        <li>Il sistema genera un ruleset segreto.</li>
+        <li>L'automa evolve partendo da una cella centrale attiva.</li>
+        <li>Il giocatore osserva l'evoluzione.</li>
+        <li>Il giocatore imposta le regole ipotizzate.</li>
+        <li>Se le evoluzioni coincidono, il round è vinto.</li>
+      </ol>
+    </section>
+
+    <div class="manual-links">
+      <a href="gallery.html">Visualizzatore di ruleset</a>
+      <a href="../../index.php">Torna al gioco</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
