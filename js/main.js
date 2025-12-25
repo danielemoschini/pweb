@@ -1,99 +1,61 @@
-// configurazione
-const CELLS = 101;   // larghezza automa (celle)
-const STEPS = 200;   // numero di righe (evoluzioni)
-const CELL_SIZE = 4;
+const CONFIG = {
+    CELLS: 51,   // larghezza automa (celle)
+    STEPS: 50,   // numero di righe (evoluzioni)
+    CELL_SIZE: 10,
+    WRAP_AROUND: true, // effetto pacman
+    RENDER_DELAY_MS: 25,
+    MAX_ROUNDS: 5
+};
 
-let canvas;
-let ctx;
-let grid = [];
-let ruleset = [1, 0, 1, 1, 0, 1, 1, 0];
+// temp placement: random ruleset con bit bilanciati per l'automa di gioco 
+// pattern più complessi e interessanti si creano più spesso
+
+//utilizzo di header rulegenerator.js per generare solo pattern "interessanti" di classe 4
+
+/*
+let gameRules = (() => {
+        let ruleset = new Array(8);
+        let onesCount = 0;
+
+        // Bucle che continua finché non si genera un ruleset con un numero 
+        // di '1' compreso tra MIN_ONES e MAX_ONES.
+        do {
+            onesCount = 0;
+            for (let i = 0; i < 8; i++) {
+                // Genera casualmente 0 o 1
+                ruleset[i] = Math.round(Math.random());
+                if (ruleset[i] === 1) {
+                    onesCount++;
+                }
+            }
+        } while (onesCount < 3 || onesCount > 6);
+
+        return ruleset;
+    })();*/
+/* in alternativa random puro
+for (let i = 0; i < 8; i++) {
+    gameRules[i] = Math.round(Math.random());
+}
+*/
+
+let gameAutomaton;
+let playerAutomaton;
 
 document.addEventListener("DOMContentLoaded", () => {
-  initCanvas();
-  initGrid();
-  drawGrid();
+    //Creazione dell'Automa di Gioco 
+    gameAutomaton = new CellularAutomaton(
+        "gameCanvas", 
+        CONFIG
+    );
+
+    //Creazione dell'Automa del Giocatore 
+    playerAutomaton = new CellularAutomaton(
+        "playerCanvas", 
+        CONFIG
+    );
+    
+    document.getElementById("logoutButton").addEventListener("click", () => {window.location.href = "../handlers/logout.php";});
+
+    const iniziaBtn = document.getElementById("startGameButton");
+    iniziaBtn.addEventListener("click", start);
 });
-
-function initCanvas() {
-    canvas = document.getElementById("automataCanvas");
-    ctx = canvas.getContext("2d");
-
-    canvas.width  = CELLS * CELL_SIZE;
-    canvas.height = STEPS * CELL_SIZE;
-
-    ctx.fillStyle = "black";
-    //prova
-    for(let i = 1; i < STEPS; i++) {
-        setTimeout(function () {
-            step(i);
-            drawNextRow(i);
-        }, i*25); //evoluzione ogni 0.025s
-    }
-}
-
-function initGrid() {
-    grid = [];
-
-    for (let y = 0; y < STEPS; y++) {
-      let row = new Array(CELLS).fill(0);
-
-      // condizione iniziale: cella centrale accesa
-      if (y === 0) {
-        row[Math.floor(CELLS / 2)] = 1;
-      }
-
-      grid.push(row);
-    }
-}
-
-function drawGrid() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    for (let y = 0; y < grid.length; y++) {
-      for (let x = 0; x < grid[y].length; x++) {
-        if (grid[y][x] === 1) {
-          ctx.fillRect(
-            x * CELL_SIZE,
-            y * CELL_SIZE,
-            CELL_SIZE,
-            CELL_SIZE
-          );
-        }
-      }
-    }
-}
-
-function step(idx) {
-    const prev = grid[idx-1];
-    const next = new Array(CELLS).fill(0);
-    
-    //celle laterali copiano il valore superiore
-    next[0] = prev[0];
-    next[CELLS-1] = prev[CELLS-1];
-    
-    for(let x = 1; x < CELLS-1; x++) {
-        next[x] = calculateState(prev[x-1], prev[x], prev[x+1]); //calcolo l'evoluzione dalle 3 celle superiori in base al ruleset
-    }
-
-    grid[idx] = next;
-}
-
-function drawNextRow(idx) {
-    for(let x = 1; x < CELLS-1; x++) {
-        if(grid[idx][x] === 1){
-            ctx.fillRect(
-                x * CELL_SIZE,
-                idx * CELL_SIZE,
-                CELL_SIZE,
-                CELL_SIZE
-              );
-        }
-    }
-}
-
-function calculateState (left, center, right) {
-    //uso aritmetica per determinare il caso
-    //    lcr = l00+0c0+00r = state = ruleset[i]
-    const state = (left << 2) + (center << 1) + right;
-    return ruleset[state];
-}
