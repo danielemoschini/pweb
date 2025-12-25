@@ -1,7 +1,152 @@
-h1 {
-    justify-self: center;
+/* --- CONFIGURAZIONE GLOBALE --- */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #eaf3f8;
+    text-align: center;
+    color: #333;
 }
-canvas {
-    border: 1px solid #333;
-    image-rendering: pixelated;
+
+h1 {
+    color: #1B6E98; 
+}
+
+#mainLayoutGrid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 30px; 
+    width: 100%;
+    max-width: 1200px; 
+    margin: 20px auto; 
+    justify-content: center;
+}
+
+.canvas-container {
+    --active-color: #1B6E98; 
+    --inactive-color: #ffffff; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+#gameCanvas, #playerCanvas {
+    display: block;
+    border: 2px solid #1B6E98; 
+    background-color: #ffffff;
+}
+
+#gameStatus, #playerInterface {
+    background-color: #fff;
+    border: 1px solid #b3d9ff;
+    border-radius: 5px;
+    padding: 20px;
+    max-height: 400px;
+}
+
+#playerInterface {
+    margin-top: 6rem;
+}
+
+#ruleset-selectors {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 10px; 
+    justify-content: center; 
+    min-width: 250px;
+    margin: 15px 0;
+}
+
+.rule-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.rule-block:hover {
+    background-color: #f0f8ff;
+}
+
+.cell {
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    border: 1px solid #555;
+    margin: 1px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.input-pattern .cell.active {
+    background-color: #1B6E98;
+}
+
+.rule-block input[type="checkbox"] {
+    display: none;
+}
+
+.rule-block input[type="checkbox"]:checked ~ .output-cell .cell.output {
+    background-color: #1B6E98; 
+}
+
+a {
+    margin: 0 10px;
+    color: #1B6E98;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#scoreDisplay {
+    font-weight: bold;
+}
+
+#logoutButton{
+    padding: 8px 16px;
+    margin: 4px;
+    background-color: #455A64;
+    color: white;
+    border: 1px solid #455A64;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#deleteAccountButton {
+    padding: 8px 16px;
+    margin: 4px;
+    background-color: #E57373;
+    color: white;
+    border: 1px solid #E57373;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.account-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#username {
+    margin: 10px;
+    color: #1B6E98;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.3rem;
 }
