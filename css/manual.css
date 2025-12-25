@@ -1,0 +1,43 @@
+.manual-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #b3d9ff;
+}
+
+.manual-container h1,
+.manual-container h2 {
+  color: #1B6E98;
+}
+
+.manual-container p,
+.manual-container li {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.manual-links {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.manual-links a {
+  margin: 0 10px;
+  color: #1B6E98;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.manual-container ol {
+  padding-left: 0; 
+  list-style-position: inside;
+  width: fit-content; 
+  margin: 0 auto; 
+  text-align: left; 
+}
+
+.manual-container ol li {
+  text-align: center;
+}
