@@ -12,7 +12,6 @@ require '../handlers/session.php';
     <title>Automata Match</title>
 
     <script src="../../js/automaton.js"></script>
-    <script src="../../js/rulegenerator.js"></script>
     <script src="../../js/game.js"></script>
     <script src="../../js/main.js"></script>
 </head>
@@ -21,14 +20,15 @@ require '../handlers/session.php';
     <header>
         <div class="account-links">
             <p id="username">Utente: <strong><?= htmlspecialchars($_SESSION['username']) ?></strong></p>
-            <button id="logoutButton">Log Out</button>
+            <button id="logoutButton">Logout</button>
             <form action="../handlers/delete.php" method="POST" onsubmit="return confirm('Sei sicuro di voler cancellare l’account?');">
                 <button id="deleteAccountButton" type="submit">Cancella Account</button>
             </form>
         </div>
         <div class="game-links">
             <a href="leaderboard.php">Leaderboard</a> |
-            <a href="manual.html">Manuale del gioco</a>
+            <a href="manual.html">Manuale del gioco</a> |
+            <a href="gallery.html">Visualizzatore di Ruleset</a>
         </div>
     </header>
 
@@ -37,6 +37,12 @@ require '../handlers/session.php';
         <p id="roundDisplay">Pronto. Premi 'Inizia Gioco'.</p>
         <p id="scoreDisplay"><strong>Punti: 0</strong></p>
         <button id="startGameButton">Inizia Gioco</button>
+        <label for="levelSelect">Difficoltà:</label>
+        <select id="levelSelect">
+            <option value="Facile" selected>Facile (5 round)</option>
+            <option value="Normale">Normale (10 round)</option>
+            <option value="Difficile">Difficile (15 round)</option>
+        </select>
     </div>
 
     <div id="mainLayoutGrid">
@@ -46,93 +52,175 @@ require '../handlers/session.php';
             <canvas id="gameCanvas"></canvas>
         </div>
         
-        <div id="playerInterface">
-            <h2>Imposta la Regola (Output cella)</h2>
-            
-            <div id="ruleset-selectors">
-                <label for="rule-7" class="rule-block">
+    <div id="playerInterface">
+        <h2>Imposta la Regola (Output cella)</h2>
+
+        <div id="ruleset-selectors">
+
+            <!-- RULE 7 -->
+            <div class="rule-block">
+                <label>
                     <input type="checkbox" id="rule-7" data-index="7">
-                    <div class="input-pattern">
-                        <span class="cell active"></span><span class="cell active"></span><span class="cell active"></span>
-                    </div>
-                    <span class="arrow">⬇</span>
-                    <div class="output-cell"><span class="cell output"></span></div>
-                </label>
 
-                <label for="rule-6" class="rule-block">
+                    <span class="input-pattern">
+                        <span class="cell active"></span>
+                        <span class="cell active"></span>
+                        <span class="cell active"></span>
+                    </span>
+
+                    <span class="arrow">⬇</span>
+
+                    <span class="output-cell">
+                        <span class="cell output"></span>
+                    </span>
+                </label>
+            </div>
+
+            <!-- RULE 6 -->
+            <div class="rule-block">
+                <label>
                     <input type="checkbox" id="rule-6" data-index="6">
-                    <div class="input-pattern">
-                        <span class="cell active"></span><span class="cell active"></span><span class="cell"></span>
-                    </div>
-                    <span class="arrow">⬇</span>
-                    <div class="output-cell"><span class="cell output"></span></div>
-                </label>
 
-                <label for="rule-5" class="rule-block">
+                    <span class="input-pattern">
+                        <span class="cell active"></span>
+                        <span class="cell active"></span>
+                        <span class="cell"></span>
+                    </span>
+
+                    <span class="arrow">⬇</span>
+
+                    <span class="output-cell">
+                        <span class="cell output"></span>
+                    </span>
+                </label>
+            </div>
+
+            <!-- RULE 5 -->
+            <div class="rule-block">
+                <label>
                     <input type="checkbox" id="rule-5" data-index="5">
-                    <div class="input-pattern">
-                        <span class="cell active"></span><span class="cell"></span><span class="cell active"></span>
-                    </div>
-                    <span class="arrow">⬇</span>
-                    <div class="output-cell"><span class="cell output"></span></div>
-                </label>
 
-                <label for="rule-4" class="rule-block">
+                    <span class="input-pattern">
+                        <span class="cell active"></span>
+                        <span class="cell"></span>
+                        <span class="cell active"></span>
+                    </span>
+
+                    <span class="arrow">⬇</span>
+
+                    <span class="output-cell">
+                        <span class="cell output"></span>
+                    </span>
+                </label>
+            </div>
+
+            <!-- RULE 4 -->
+            <div class="rule-block">
+                <label>
                     <input type="checkbox" id="rule-4" data-index="4">
-                    <div class="input-pattern">
-                        <span class="cell active"></span><span class="cell"></span><span class="cell"></span>
-                    </div>
-                    <span class="arrow">⬇</span>
-                    <div class="output-cell"><span class="cell output"></span></div>
-                </label>
 
-                <label for="rule-3" class="rule-block">
+                    <span class="input-pattern">
+                        <span class="cell active"></span>
+                        <span class="cell"></span>
+                        <span class="cell"></span>
+                    </span>
+
+                    <span class="arrow">⬇</span>
+
+                    <span class="output-cell">
+                        <span class="cell output"></span>
+                    </span>
+                </label>
+            </div>
+
+            <!-- RULE 3 -->
+            <div class="rule-block">
+                <label>
                     <input type="checkbox" id="rule-3" data-index="3">
-                    <div class="input-pattern">
-                        <span class="cell"></span><span class="cell active"></span><span class="cell active"></span>
-                    </div>
-                    <span class="arrow">⬇</span>
-                    <div class="output-cell"><span class="cell output"></span></div>
-                </label>
 
-                <label for="rule-2" class="rule-block">
+                    <span class="input-pattern">
+                        <span class="cell"></span>
+                        <span class="cell active"></span>
+                        <span class="cell active"></span>
+                    </span>
+
+                    <span class="arrow">⬇</span>
+
+                    <span class="output-cell">
+                        <span class="cell output"></span>
+                    </span>
+                </label>
+            </div>
+
+            <!-- RULE 2 -->
+            <div class="rule-block">
+                <label>
                     <input type="checkbox" id="rule-2" data-index="2">
-                    <div class="input-pattern">
-                        <span class="cell"></span><span class="cell active"></span><span class="cell"></span>
-                    </div>
-                    <span class="arrow">⬇</span>
-                    <div class="output-cell"><span class="cell output"></span></div>
-                </label>
 
-                <label for="rule-1" class="rule-block">
+                    <span class="input-pattern">
+                        <span class="cell"></span>
+                        <span class="cell active"></span>
+                        <span class="cell"></span>
+                    </span>
+
+                    <span class="arrow">⬇</span>
+
+                    <span class="output-cell">
+                        <span class="cell output"></span>
+                    </span>
+                </label>
+            </div>
+
+            <!-- RULE 1 -->
+            <div class="rule-block">
+                <label>
                     <input type="checkbox" id="rule-1" data-index="1">
-                    <div class="input-pattern">
-                        <span class="cell"></span><span class="cell"></span><span class="cell active"></span>
-                    </div>
-                    <span class="arrow">⬇</span>
-                    <div class="output-cell"><span class="cell output"></span></div>
-                </label>
 
-                <label for="rule-0" class="rule-block">
-                    <input type="checkbox" id="rule-0" data-index="0">
-                    <div class="input-pattern">
-                        <span class="cell"></span><span class="cell"></span><span class="cell"></span>
-                    </div>
+                    <span class="input-pattern">
+                        <span class="cell"></span>
+                        <span class="cell"></span>
+                        <span class="cell active"></span>
+                    </span>
+
                     <span class="arrow">⬇</span>
-                    <div class="output-cell"><span class="cell output"></span></div>
+
+                    <span class="output-cell">
+                        <span class="cell output"></span>
+                    </span>
                 </label>
             </div>
-            
-            <div class="controls">
-                <button id="submitRulesButton" disabled>Conferma Regole</button>
+
+            <!-- RULE 0 -->
+            <div class="rule-block">
+                <label>
+                    <input type="checkbox" id="rule-0" data-index="0">
+
+                    <span class="input-pattern">
+                        <span class="cell"></span>
+                        <span class="cell"></span>
+                        <span class="cell"></span>
+                    </span>
+
+                    <span class="arrow">⬇</span>
+
+                    <span class="output-cell">
+                        <span class="cell output"></span>
+                    </span>
+                </label>
             </div>
+
         </div>
-        
-        <div class="canvas-container" id="player-view">
-            <h2>La Tua Evoluzione</h2>
-            <canvas id="playerCanvas"></canvas>
+
+        <div class="controls">
+            <button id="submitRulesButton" disabled>Conferma Regole</button>
         </div>
-        
+    </div>
+
+    <div class="canvas-container" id="player-view">
+        <h2>La Tua Evoluzione</h2>
+        <canvas id="playerCanvas"></canvas>
+    </div>
+
     </div>
 </body>
 </html>
