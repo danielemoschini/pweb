@@ -1,0 +1,6 @@
+utenti test:
+usernames: alice, bob, carol, dave, eve
+password: password
+
+username: pippo
+password: test123
