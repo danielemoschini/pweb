@@ -4,101 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruleset Gallery</title>
-  <link rel="stylesheet" href="../../css/style.css">
+
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/gallery.css">
+
+    <script src="../../js/automaton.js"></script>
+    <script src="../../js/ruleset-gallery.js"></script>
+
+    <title>Galleria dei Ruleset</title>
+
 </head>
 <body>
 
-<h1 style="text-align:center">Visualizzatore di Ruleset</h1>
+<header class="gallery-header">
+    <a href="manual.html" class="back-button">← Torna al manuale</a> |
+    <a href="game.php" class="back-button">← Torna al gioco</a>
+    <h1>Gallery dei Ruleset di Wolfram</h1>
+    <p class="subtitle">Tutti i 256 automi cellulari elementari (condizione iniziale: cella centrale)</p>
+</header>
 
-<div id="playerInterface">
-  <h2>Imposta la Regola (Output cella)</h2>
-  
-  <div id="ruleset-selectors">
-      <label for="rule-7" class="rule-block">
-          <input type="checkbox" id="rule-7" data-index="7">
-          <div class="input-pattern">
-              <span class="cell active"></span><span class="cell active"></span><span class="cell active"></span>
-          </div>
-          <span class="arrow">⬇</span>
-          <div class="output-cell"><span class="cell output"></span></div>
-      </label>
-
-      <label for="rule-6" class="rule-block">
-          <input type="checkbox" id="rule-6" data-index="6">
-          <div class="input-pattern">
-              <span class="cell active"></span><span class="cell active"></span><span class="cell"></span>
-          </div>
-          <span class="arrow">⬇</span>
-          <div class="output-cell"><span class="cell output"></span></div>
-      </label>
-
-      <label for="rule-5" class="rule-block">
-          <input type="checkbox" id="rule-5" data-index="5">
-          <div class="input-pattern">
-              <span class="cell active"></span><span class="cell"></span><span class="cell active"></span>
-          </div>
-          <span class="arrow">⬇</span>
-          <div class="output-cell"><span class="cell output"></span></div>
-      </label>
-
-      <label for="rule-4" class="rule-block">
-          <input type="checkbox" id="rule-4" data-index="4">
-          <div class="input-pattern">
-              <span class="cell active"></span><span class="cell"></span><span class="cell"></span>
-          </div>
-          <span class="arrow">⬇</span>
-          <div class="output-cell"><span class="cell output"></span></div>
-      </label>
-
-      <label for="rule-3" class="rule-block">
-          <input type="checkbox" id="rule-3" data-index="3">
-          <div class="input-pattern">
-              <span class="cell"></span><span class="cell active"></span><span class="cell active"></span>
-          </div>
-          <span class="arrow">⬇</span>
-          <div class="output-cell"><span class="cell output"></span></div>
-      </label>
-
-      <label for="rule-2" class="rule-block">
-          <input type="checkbox" id="rule-2" data-index="2">
-          <div class="input-pattern">
-              <span class="cell"></span><span class="cell active"></span><span class="cell"></span>
-          </div>
-          <span class="arrow">⬇</span>
-          <div class="output-cell"><span class="cell output"></span></div>
-      </label>
-
-      <label for="rule-1" class="rule-block">
-          <input type="checkbox" id="rule-1" data-index="1">
-          <div class="input-pattern">
-              <span class="cell"></span><span class="cell"></span><span class="cell active"></span>
-          </div>
-          <span class="arrow">⬇</span>
-          <div class="output-cell"><span class="cell output"></span></div>
-      </label>
-
-      <label for="rule-0" class="rule-block">
-          <input type="checkbox" id="rule-0" data-index="0">
-          <div class="input-pattern">
-              <span class="cell"></span><span class="cell"></span><span class="cell"></span>
-          </div>
-          <span class="arrow">⬇</span>
-          <div class="output-cell"><span class="cell output"></span></div>
-      </label>
-  </div>
-  
-  <div class="controls">
-      <button id="submitRulesButton">Conferma Regole</button>
-  </div>
+<div class="gallery-controls">
+  <button id="prevBtn">◀ Precedenti</button>
+  <span id="rangeLabel"></span>
+  <button id="nextBtn">Successivi ▶</button>
+  <label for="wrapAround">Wrap-Around (Effetto Pacman)</label>
+  <input type="checkbox" id="wrapAround">
 </div>
 
-<div id="canvas-container">
-    <canvas id="playerCanvas"></canvas>
-</div>
-
-<script src="../../js/automaton.js"></script>
-<script src="../../js/ruleset-gallery.js"></script>
+<div id="rulesetGrid"></div>
 
 </body>
 </html>
