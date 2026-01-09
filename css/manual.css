@@ -7,13 +7,11 @@
   border: 1px solid #b3d9ff;
 }
 
-.manual-container h1,
-.manual-container h2 {
+.manual-container h1, .manual-container h2 {
   color: #1B6E98;
 }
 
-.manual-container p,
-.manual-container li {
+.manual-container p, .manual-container li {
   font-size: 15px;
   line-height: 1.6;
 }

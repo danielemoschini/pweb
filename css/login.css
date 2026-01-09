@@ -1,10 +1,10 @@
-/* ===== LOGIN PAGE ===== */
+/*LOGIN PAGE*/
 
 body {
     background: linear-gradient(135deg, #eaf3f8, #d6e9f5);
 }
 
-/* Contenitore principale */
+/*contenitore principale*/
 .login-container {
     display: flex;
     justify-content: center;
@@ -12,7 +12,7 @@ body {
     margin-top: 60px;
 }
 
-/* Card login / register */
+/*card login / register*/
 .login-card {
     background-color: #ffffff;
     border: 1px solid #b3d9ff;
@@ -22,13 +22,13 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Titoli */
+/*titoli*/
 .login-card h2 {
     margin-bottom: 20px;
     color: #1B6E98;
 }
 
-/* Input */
+/*input*/
 .login-card input {
     width: 100%;
     padding: 8px;
@@ -38,7 +38,7 @@ body {
     font-size: 14px;
 }
 
-/* Pulsanti */
+/*pulsanti*/
 .login-card button {
     width: 100%;
     padding: 10px;
@@ -54,7 +54,7 @@ body {
     background-color: #155a7a;
 }
 
-/* Messaggi errore */
+/*errore*/
 .login-error {
     color: #c0392b;
     font-weight: bold;

@@ -1,10 +1,10 @@
-/* ===== LEADERBOARD PAGE ===== */
+/*LEADERBOARD PAGE*/
 
 body {
     background: linear-gradient(135deg, #eaf3f8, #d6e9f5);
 }
 
-/* Contenitore principale */
+/*contenitore principale*/
 .leaderboard-container {
     max-width: 700px;
     margin: 40px auto;
@@ -13,9 +13,10 @@ body {
     border-radius: 8px;
     padding: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
 }
 
-/* Titoli */
+/*titoli*/
 .leaderboard-container h1,
 .leaderboard-container h2 {
     color: #1B6E98;
@@ -23,7 +24,8 @@ body {
     margin-bottom: 20px;
 }
 
-/* Lista classifica */
+/*LISTA LEADERBOARD*/
+
 .leaderboard-list {
     list-style: none;
     padding: 0;
@@ -31,20 +33,39 @@ body {
 }
 
 .leaderboard-list li {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    align-items: center;
     padding: 10px 14px;
     border-bottom: 1px solid #e0e0e0;
     font-size: 15px;
 }
 
-/* Evidenzia il primo */
-.leaderboard-list li:first-child {
-    font-weight: bold;
+/*intestazione*/
+.leaderboard-list .list-header {
+    color: #1B6E98;
+    border-bottom: 2px solid #1B6E98;
+    padding-bottom: 8px;
+    margin-bottom: 5px;
+}
+
+/*celle */
+.leaderboard-list li span {
+    text-align: center;
+}
+
+/*username */
+.leaderboard-list .col-username {
+    text-align: left;
+}
+
+/*evidenzia il miglior risultato */
+.leaderboard-list li:not(.list-header):first-of-type {
     background-color: #f0f8ff;
 }
 
-/* History personale */
+/*STORICO PARTITE PERSONALI*/
+
 .history-list {
     list-style: none;
     padding: 0;
@@ -52,12 +73,38 @@ body {
 }
 
 .history-list li {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    align-items: center;
     padding: 8px 12px;
     border-bottom: 1px dashed #ccc;
     font-size: 14px;
 }
 
-/* Link di navigazione */
+/*intestazione storico*/
+.history-list .list-header {
+    color: #1B6E98;
+    border-bottom: 2px solid #1B6E98;
+    padding-bottom: 6px;
+}
+
+/*celle*/
+.history-list li span {
+    padding: 0 5px;
+}
+
+/*colonne*/
+.history-list .col-history-difficulty {
+    font-weight: 700;
+}
+
+.history-list .col-history-score,
+.history-list .col-history-date {
+    text-align: center;
+}
+
+/*LINK DI NAVIGAZIONE*/
+
 .nav-links {
     text-align: center;
     margin-top: 25px;
@@ -71,5 +118,13 @@ body {
 }
 
 .nav-links a:hover {
+    text-decoration: underline;
+}
+
+.sortable {
+    cursor: pointer;
+}
+
+.sortable:hover {
     text-decoration: underline;
 }

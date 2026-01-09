@@ -1,4 +1,4 @@
-/* --- CONFIGURAZIONE GLOBALE --- */
+/*CONFIGURAZIONE GLOBALE*/
 body {
     font-family: sans-serif;
     margin: 0;
@@ -9,22 +9,20 @@ body {
 }
 
 h1 {
-    color: #1B6E98; 
+    color: #1B6E98;
 }
 
 #mainLayoutGrid {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
-    gap: 30px; 
+    gap: 30px;
     width: 100%;
-    max-width: 1200px; 
-    margin: 20px auto; 
+    max-width: 1200px;
+    margin: 20px auto;
     justify-content: center;
 }
 
 .canvas-container {
-    --active-color: #1B6E98; 
-    --inactive-color: #ffffff; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +31,7 @@ h1 {
 
 #gameCanvas, #playerCanvas {
     display: block;
-    border: 2px solid #1B6E98; 
+    border: 2px solid #1B6E98;
     background-color: #ffffff;
 }
 
@@ -42,56 +40,74 @@ h1 {
     border: 1px solid #b3d9ff;
     border-radius: 5px;
     padding: 20px;
-    max-height: 400px;
+    max-height: 420px;
 }
 
 #playerInterface {
     margin-top: 6rem;
 }
 
+/*selettore di ruleset*/
 #ruleset-selectors {
     display: flex;
-    flex-wrap: wrap; 
-    gap: 10px; 
-    justify-content: center; 
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
     min-width: 250px;
     margin: 15px 0;
 }
 
+/*contenitore esterno*/
 .rule-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    padding: 5px;
     border: 1px solid #ddd;
     border-radius: 3px;
+    padding: 6px;
+    cursor: pointer;
 }
 
 .rule-block:hover {
     background-color: #f0f8ff;
 }
 
-.cell {
-    width: 14px;
-    height: 14px;
-    background-color: white;
-    border: 1px solid #555;
-    margin: 1px;
-    display: inline-block;
-    box-sizing: border-box;
-}
-
-.input-pattern .cell.active {
-    background-color: #1B6E98;
+.rule-block label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
 }
 
 .rule-block input[type="checkbox"] {
     display: none;
 }
 
+.input-pattern, .output-cell {
+    display: flex;
+    justify-content: center;
+    margin: 4px 0;
+}
+
+/*celle*/
+.cell {
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    border: 1px solid #555;
+    margin: 1px;
+    box-sizing: border-box;
+}
+
+/*celle attive input*/
+.input-pattern .cell.active {
+    background-color: #1B6E98;
+}
+
+/*output attivo*/
 .rule-block input[type="checkbox"]:checked ~ .output-cell .cell.output {
-    background-color: #1B6E98; 
+    background-color: #1B6E98;
+}
+
+.arrow {
+    margin: 4px 0;
 }
 
 a {
@@ -101,42 +117,12 @@ a {
     text-decoration: none;
 }
 
-#scoreDisplay {
-    font-weight: bold;
-}
-
-#logoutButton{
-    padding: 8px 16px;
-    margin: 4px;
-    background-color: #455A64;
-    color: white;
-    border: 1px solid #455A64;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
-#deleteAccountButton {
-    padding: 8px 16px;
-    margin: 4px;
-    background-color: #E57373;
-    color: white;
-    border: 1px solid #E57373;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.9em;
-    font-weight: 600;
-    text-transform: uppercase;
-}
-
+/*account*/
 .account-links {
     position: fixed;
     top: 0;
     right: 0;
     padding: 5px;
-    border-radius: 5px;
     margin: 5px;
     display: flex;
     gap: 10px;
@@ -147,6 +133,30 @@ a {
     margin: 10px;
     color: #1B6E98;
     font-weight: bold;
-    text-decoration: none;
     font-size: 1.3rem;
+}
+
+/*bottoni*/
+#logoutButton {
+    padding: 8px 16px;
+    background-color: #455A64;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#deleteAccountButton {
+    padding: 8px 16px;
+    background-color: #E57373;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#scoreDisplay {
+    font-weight: bold;
 }
