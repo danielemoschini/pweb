@@ -30,13 +30,16 @@ if (isset($_SESSION['user_id'])) {
             <?php 
             switch ($errorCode) {
                 case '1':
-                    echo "❌ Credenziali non valide. Riprova."; // Errore di login (Password/Username sbagliati)
+                    echo "❌ Credenziali non valide. Riprova."; //errore di login (password/username sbagliati)
                     break;
                 case '2':
-                    echo "⚠️ Username già in uso. Scegline un altro."; // Errore di registrazione (Username UNIQUE)
+                    echo "⚠️ Username già in uso. Scegline un altro."; //errore di registrazione (username UNIQUE)
                     break;
                 case '3':
-                    echo "❌ Errore interno del server durante la registrazione."; // Altri errori SQL
+                    echo "❌ Errore interno del server durante la registrazione."; //altri errori SQL
+                    break;
+                case '4':
+                    echo "❌ Le password non coincidono o superano i 20 caratteri."; //errore di registrazione (password non coincide o troppo lunga)
                     break;
                 default:
                     echo "Si è verificato un errore sconosciuto.";
@@ -58,8 +61,24 @@ if (isset($_SESSION['user_id'])) {
         <form class="login-card" action="php/handlers/auth.php" method="POST">
             <h2>Login</h2>
             <input type="hidden" name="action" value="login">
-            <input type="text" name="username" placeholder="Username" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
+            <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                maxlength="20"
+                required
+                pattern="^[a-zA-Z0-9]{1,20}$"
+                title="Solo lettere e numeri, massimo 20 caratteri"
+            >
+            <br>
+
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+                maxlength="20"
+            ><br>
             <button type="submit">Accedi</button>
         </form>
 
@@ -67,11 +86,41 @@ if (isset($_SESSION['user_id'])) {
         <form class="login-card" action="php/handlers/auth.php" method="POST">
             <h2>Registrazione</h2>
             <input type="hidden" name="action" value="register">
-            <input type="text" name="username" placeholder="Username" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
+            <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                maxlength="20"
+                required
+                pattern="^[a-zA-Z0-9]{1,20}$"
+                title="Solo lettere e numeri, massimo 20 caratteri"
+            >
+            <br>
+            <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                required
+                maxlength="20"
+            ><br>
+
+            <input
+                type="password"
+                name="password_confirm"
+                placeholder="Ripetere la password"
+                required
+                maxlength="20"
+            ><br>
             <button type="submit">Registrati</button>
         </form>
 
     </div>
+
+    <br>
+    <br>
+    <br>
+
+    <a href="php/pages/manual.html">Manuale del gioco</a>
+
 </body>
 </html>
