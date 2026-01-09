@@ -1,6 +1,11 @@
 <?php
 require 'config.php';
 if ($_POST['action'] === 'register') {
+    if (strlen($_POST['password']) > 20 || $_POST['password'] !== $_POST['password_confirm']) {
+        header("Location: ../../index.php?error=4");
+        exit;
+    }
+
     $username = $_POST['username'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
@@ -10,16 +15,16 @@ if ($_POST['action'] === 'register') {
         );
         $stmt->execute([$username, $password]);
         
-        // Successo
+        //successo
         $_SESSION['messaggio'] = "Account creato con successo";
         header("Location: ../../index.php");
 
     } catch (PDOException $e) {
-        // Codice '23000': username duplicato
+        //codice 23000: username duplicato
         if ($e->getCode() === '23000') { 
             header("Location: ../../index.php?error=2"); 
         } else {
-            // Gestione di altri errori SQL
+            //gestione di altri errori SQL
             error_log("Database Error: " . $e->getMessage());
             header("Location: ../../index.php?error=3"); 
         }
