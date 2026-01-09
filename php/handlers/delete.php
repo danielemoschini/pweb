@@ -6,22 +6,22 @@ $userId = $_SESSION['user_id'];
 try {
     $pdo->beginTransaction();
 
-    //Cancella storico punteggi
+    //cancella storico punteggi
     $stmt = $pdo->prepare("DELETE FROM scores WHERE user_id = ?");
     $stmt->execute([$userId]);
 
-    //Cancella utente
+    //cancella utente
     $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
     $stmt->execute([$userId]);
 
-    //Commit
+    //commit
     $pdo->commit();
 
-    //Logout
+    //logout
     session_unset();
     session_destroy();
 
-    //Redirect alla home/login con messaggio di successo
+    //redirect alla home/login con messaggio di successo
     session_start(); //session start per messaggio
     $_SESSION['messaggio'] = "Account cancellato con successo";
     header("Location: ../../index.php");
